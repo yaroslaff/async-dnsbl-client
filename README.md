@@ -1,6 +1,15 @@
 # async-dnsbl-client
 Asynchronous dnsbl client
 
+## Install
+~~~
+pip3 install async-dnsbl-client
+~~~
+or
+~~~
+pip3 install git+https://github.com/yaroslaff/async-dnsbl-client
+~~~
+
 ## CLI usage:
 ~~~
 $ adnsbl.py 117.207.230.178 

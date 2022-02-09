@@ -45,8 +45,10 @@ There is already python3 adns support in [python3-adns](https://github.com/troll
 Segmentation fault (core dumped)
 ~~~
 
-on 'normal' amd64 it works fine.
+on 'normal' amd64 it works fine, 
+
+async-dnsbl-client works fine on ARM machines, checking host in 53 blacklists in 0.127s (fastest).
 
 ## See also
-https://github.com/saghul/aiodns
+This project uses [aiodns package](https://github.com/saghul/aiodns) 
 

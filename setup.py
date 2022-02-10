@@ -11,11 +11,12 @@ def read(fname):
 
 setup(
     name='async-dnsbl-client',
-    version='0.0.1',
+    version='0.0.2',
     packages=['async_dnsbl_client'],
     scripts=['bin/adnsbl.py'],
 
     install_requires=[
+        'aiodns'
         ],
 
     url='https://github.com/yaroslaff/async-dnsbl-client',

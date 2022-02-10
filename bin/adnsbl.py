@@ -32,18 +32,7 @@ def main():
 
     result = asyncio.run(async_dnsbl_client.dnsbl(args.host, zones))
     print('\n'.join(result))
-    # print(asyncio.run(resolve_with_query('echo.okerr.com')))
-    return
-
-    #r = Resolver()
-    #r.add_query('google.com')
-    #r.add_query('one.one.one.one')
-    #r.process()
-
-    resolver = ADNSBL()
-    for host in args.host:
-        resolver.add_host(host)
-    print(args)
+    return int(bool(len(result)))
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())

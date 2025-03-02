@@ -5,10 +5,10 @@ import socket
 from .dnsbl_zones import dnsbl_zones
 
 
-async def resolve_with_priv(name, query_type='A', priv=None):
+async def resolve_with_priv(name, query_type='A', priv=None, resolver=None):
 
     #loop = asyncio.get_event_loop()
-    resolver = aiodns.DNSResolver()
+    resolver = resolver or aiodns.DNSResolver()
 
     retval = {
         'query': {
@@ -46,8 +46,9 @@ async def host2ips(host: str) -> list:
         return ips
 
 
-async def dnsbl(host, zonelist = None, nameservers=None):
+async def dnsbl(host, zonelist = None, nameserver=None):
     zonelist = zonelist or dnsbl_zones
+    nameservers = [nameserver] if nameserver else None
     resolver = aiodns.DNSResolver(nameservers=nameservers)
     ips = await host2ips(host)
     corolist = list()

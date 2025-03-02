@@ -11,7 +11,7 @@ def read(fname):
 
 setup(
     name='async-dnsbl-client',
-    version='0.0.3',
+    version='0.0.4',
     packages=['async_dnsbl_client'],
     scripts=['bin/adnsbl.py'],
 

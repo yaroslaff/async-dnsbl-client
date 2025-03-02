@@ -18,6 +18,7 @@ def get_args():
     parser.add_argument('host', metavar='HOST', help='host to check (IP or hostname)')
     parser.add_argument('--append', '-a', nargs='+', default=list(), metavar='DNSBL', help='add this DNSBL to check')
     parser.add_argument('--remove', '-r', nargs='+', default=list(), metavar='DNSBL', help='remove this DNSBL')
+    parser.add_argument('--nameserver', '-n', default=None, metavar='NS server', help='DNS server')
 
     return parser.parse_args()
 
@@ -30,7 +31,7 @@ def main():
 
     zones.extend(args.append)
 
-    result = asyncio.run(async_dnsbl_client.dnsbl(args.host, zones))
+    result = asyncio.run(async_dnsbl_client.dnsbl(args.host, zones, nameserver=args.nameserver))
     print('\n'.join(result))
     return int(bool(len(result)))
 

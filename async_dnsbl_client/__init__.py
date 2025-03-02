@@ -46,16 +46,16 @@ async def host2ips(host: str) -> list:
         return ips
 
 
-async def dnsbl(host, zonelist = None):
+async def dnsbl(host, zonelist = None, nameservers=None):
     zonelist = zonelist or dnsbl_zones
-    resolver = aiodns.DNSResolver()
+    resolver = aiodns.DNSResolver(nameservers=nameservers)
     ips = await host2ips(host)
     corolist = list()
 
     for ip in ips:
         revip = '.'.join(ip.split('.')[::-1])
         for zone in zonelist:
-            corolist.append(resolve_with_priv(revip+'.'+zone, priv=zone))
+            corolist.append(resolve_with_priv(revip+'.'+zone, priv=zone, resolver=resolver))
 
     R = await asyncio.gather(*corolist)
     return [ x['priv'] for x in R if x['result'] ]
